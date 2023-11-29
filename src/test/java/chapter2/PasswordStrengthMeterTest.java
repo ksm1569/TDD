@@ -26,6 +26,7 @@ public class PasswordStrengthMeterTest {
         assertEquals(PasswordStrength.STRONG, result2);
     }
 
+    @DisplayName("다른조건은 만족하지만 길이만 8자리 미만으로 해보자")
     @Test
     void meetsOtherCriteria_expect_for_Length_Then_Normal() {
         PasswordStrengthMeter meter = new PasswordStrengthMeter();

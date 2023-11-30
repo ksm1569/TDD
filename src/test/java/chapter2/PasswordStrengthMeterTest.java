@@ -26,7 +26,7 @@ public class PasswordStrengthMeterTest {
         assertEquals(PasswordStrength.STRONG, result2);
     }
 
-    @DisplayName("다른조건은 만족하지만 길이만 8자리 미만으로 해보자")
+    @DisplayName("다른 조건은 만족하지만 길이만 8자리 미만으로 해보자")
     @Test
     void meetsOtherCriteria_expect_for_Length_Then_Normal() {
         PasswordStrengthMeter meter = new PasswordStrengthMeter();
@@ -34,4 +34,11 @@ public class PasswordStrengthMeterTest {
         assertEquals(PasswordStrength.NORMAL, result);
     }
 
+    @DisplayName("다른 조건은 만족하지만 숫자를 포함하지 않는다")
+    @Test
+    void meetsOtherCriteria_except_for_number_Then_Normal() {
+        PasswordStrengthMeter meter = new PasswordStrengthMeter();
+        PasswordStrength result = meter.meter("abcABccc");
+        assertEquals(PasswordStrength.NORMAL, result);
+    }
 }

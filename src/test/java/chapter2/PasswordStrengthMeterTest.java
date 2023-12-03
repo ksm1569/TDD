@@ -54,4 +54,10 @@ public class PasswordStrengthMeterTest {
     void emptyInput_Then_Invalid() {
         extracted("", PasswordStrength.INVALID);
     }
+
+    @DisplayName("다른 조건은 만족하지만 대문자를 포함하지 않는다")
+    @Test
+    void meetsOtherCriteria_expect_for_Uppercase_Then_Normal() {
+        extracted("abc12345", PasswordStrength.NORMAL);
+    }
 }

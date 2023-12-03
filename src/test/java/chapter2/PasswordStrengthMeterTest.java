@@ -42,4 +42,16 @@ public class PasswordStrengthMeterTest {
     void meetsOtherCriteria_except_for_number_Then_Normal() {
         extracted("abcABccc", PasswordStrength.NORMAL);
     }
+
+    @DisplayName("Null이 입력되면 Invalid를 리턴해보자")
+    @Test
+    void nullInput_Then_Invalid() {
+        extracted(null, PasswordStrength.INVALID);
+    }
+
+    @DisplayName("빈값이 입력되면 Invalid를 리턴해보자")
+    @Test
+    void emptyInput_Then_Invalid() {
+        extracted("", PasswordStrength.INVALID);
+    }
 }

@@ -2,6 +2,8 @@ package chapter2;
 
 public class PasswordStrengthMeter {
     public PasswordStrength meter(String s) {
+        if(s == null || s.isEmpty()) return PasswordStrength.INVALID;
+
         if(s.length() < 8) {
             return PasswordStrength.NORMAL;
         }

@@ -16,29 +16,30 @@ public class PasswordStrengthMeterTest {
     * -> 1개이하 -> 약함
     *
     * */
+    PasswordStrengthMeter meter = new PasswordStrengthMeter();
+
     @DisplayName("암호가 모든 조건을 충족하면 강도는 강함이다")
     @Test
     void meetsAllCriteria_Then_Strong() {
-        PasswordStrengthMeter meter = new PasswordStrengthMeter();
-        PasswordStrength result = meter.meter("sumin1AB");
-        assertEquals(PasswordStrength.STRONG, result);
-        PasswordStrength result2 = meter.meter("abcdEf1!");
-        assertEquals(PasswordStrength.STRONG, result2);
+
+        extracted("sumin1AB", PasswordStrength.STRONG);
+        extracted("abcdEf1!", PasswordStrength.STRONG);
+    }
+
+    private void extracted(String password, PasswordStrength expect) {
+        PasswordStrength result = meter.meter(password);
+        assertEquals(expect, result);
     }
 
     @DisplayName("다른 조건은 만족하지만 길이만 8자리 미만으로 해보자")
     @Test
     void meetsOtherCriteria_expect_for_Length_Then_Normal() {
-        PasswordStrengthMeter meter = new PasswordStrengthMeter();
-        PasswordStrength result = meter.meter("abcdE1!");
-        assertEquals(PasswordStrength.NORMAL, result);
+        extracted("abcdE1!", PasswordStrength.NORMAL);
     }
 
     @DisplayName("다른 조건은 만족하지만 숫자를 포함하지 않는다")
     @Test
     void meetsOtherCriteria_except_for_number_Then_Normal() {
-        PasswordStrengthMeter meter = new PasswordStrengthMeter();
-        PasswordStrength result = meter.meter("abcABccc");
-        assertEquals(PasswordStrength.NORMAL, result);
+        extracted("abcABccc", PasswordStrength.NORMAL);
     }
 }

@@ -11,9 +11,9 @@ public class PasswordStrengthMeterTest {
     * 2. 0부터 9사이의 숫자를 포함
     * 3. 대문자 포함
     *
-    * -> 3개의 규칙 전부 -> 강함
-    * -> 2개 -> 보통
-    * -> 1개이하 -> 약함
+    * -> 3개의 규칙 전부 -> 강함 (STRONG)
+    * -> 2개 -> 보통 (NORMAL)
+    * -> 1개이하 -> 약함 (WEAK)
     *
     * */
     PasswordStrengthMeter meter = new PasswordStrengthMeter();
@@ -59,5 +59,11 @@ public class PasswordStrengthMeterTest {
     @Test
     void meetsOtherCriteria_expect_for_Uppercase_Then_Normal() {
         extracted("abc12345", PasswordStrength.NORMAL);
+    }
+
+    @DisplayName("8글자이상 조건만 만족시켜보자")
+    @Test
+    void meetsOnlyLengthCriteria_Then_Weak() {
+        extracted("abcdedfg", PasswordStrength.WEAK);
     }
 }

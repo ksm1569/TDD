@@ -8,7 +8,7 @@ public class PasswordStrengthMeter {
 
         int metCounts = getMetCounts(s);
 
-        if (metCounts == 1) return PasswordStrength.WEAK;
+        if (metCounts <= 1) return PasswordStrength.WEAK;
         if (metCounts == 2) return PasswordStrength.NORMAL;
 
         return PasswordStrength.STRONG;

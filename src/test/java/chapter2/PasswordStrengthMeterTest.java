@@ -78,4 +78,10 @@ public class PasswordStrengthMeterTest {
     void meetsOnlyUpperCriteria_Then_Weak() {
         extracted("ABC", PasswordStrength.WEAK);
     }
+
+    @DisplayName("모든 조건을 만족시키지 않는다")
+    @Test
+    void meetsNoCriteria_Then_Weak() {
+        extracted("abc", PasswordStrength.WEAK);
+    }
 }

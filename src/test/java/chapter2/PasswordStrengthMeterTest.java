@@ -72,4 +72,10 @@ public class PasswordStrengthMeterTest {
     void meetsOnlyNumCriteria_Then_Weak() {
         extracted("12345", PasswordStrength.WEAK);
     }
+
+    @DisplayName("대문자 포함 조건만 만족시켜보자")
+    @Test
+    void meetsOnlyUpperCriteria_Then_Weak() {
+        extracted("ABC", PasswordStrength.WEAK);
+    }
 }
